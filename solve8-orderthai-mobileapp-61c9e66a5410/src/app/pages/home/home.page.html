@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true">
+    
+    <div class="no-record" *ngIf="orders && orders.length == 0">
+        <p>
+            No record found
+        </p>
+    </div>
+    <div class="pause-banner"  *ngIf="ispause==1" >
+        <span>New orders are paused</span>
+        <span class="unpause" (click)="resumeOrders()">unpause orders</span>
+   </div>
+    <ion-refresher style="height: -webkit-fill-available;" slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-list lines="none" class="my-order">
+        <ion-item *ngFor="let item of orders;let i = index" (click)="onOrderClick(item)">
+            <div class="orer-icon" *ngIf="item.orderMethod=='delivery'">
+                <img src="/assets/icon/delivery-truck.png" alt="Delivery truck">
+            </div>
+            <div class="orer-icon" *ngIf="item.orderMethod=='pickup' || item.orderMethod=='order_ahead'">
+                <img src="/assets/icon/shopping-bag.png" alt="pickup">
+            </div>
+            <div class="orer-icon" *ngIf="item.orderMethod=='table_reservation'">
+                <img src="/assets/icon/round-table.png" alt="table reservation">
+            </div>
+            <ion-label>
+                <h2 *ngIf="item.orderMethod === 'delivery' || item.orderMethod==='test'"><span>
+                                    <ion-icon name="location-sharp"></ion-icon>
+                                    </span>{{item.address?item.address:item.email}}</h2>
+                <h2 *ngIf="item.orderMethod === 'table_reservation' || item.orderMethod === 'pickup' || item.orderMethod === 'order_ahead'"><span>
+                                        <ion-icon name="person-outline"></ion-icon>
+                                        </span>{{item.clientName?item.clientName:item.email}}</h2>
+
+                <p>
+                    <ion-badge [ngClass]="getClass(item.orderStatus)">{{item.orderStatus}}</ion-badge>
+                </p>
+            </ion-label>
+            <div [ngClass]="getClass(item.orderStatus)" *ngIf="['accepted','pending'].includes(item.orderStatus.toLowerCase())">
+                <img [src]="getPathForClock(item.orderStatus)" alt="Order Reject">
+                <span>{{item.orderRemainingTime}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,34 @@
+
+<ion-content>
+  <ion-list>
+      
+          <ion-item>
+            <ion-label >New Orders</ion-label>
+             <ion-toggle #toggleComponent2 [value]="true"  [(ngModel)]="toggle_pause_all_orders" (ngModelChange)="onConfirm($event)" ></ion-toggle>
+           </ion-item>
+
+           <ion-item>
+            <ion-label>Table Reservation</ion-label>
+            <ion-toggle #toggleComponent1 [value]="false"  [(ngModel)]="toggle_pause_table_reservation_orders" (ngModelChange)="pauseTableReservationOrders($event)" ></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Delivery Orders</ion-label>
+              <ion-toggle #toggleComponent3 [value]="false"  [(ngModel)]="toggle_pause_delivery_orders" (ngModelChange)="pauseDeliveryOrders($event)"  ></ion-toggle>
+              </ion-item>
+      
+
+  
+  
+
+ <ion-item>
+        <div class="wrapper">
+          <span class="call-restaurant">For more order management options, please visit the Restaurant Admin Panel at <span class="highlight">orderthai.com.au</span>
+          </span>
+          </div>
+</ion-item>
+
+ 
+ 
+  </ion-list>
+</ion-content>

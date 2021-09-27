@@ -1,0 +1,63 @@
+.type{
+    font-size: smaller;
+}
+ion-item{
+    --border-style:none;
+}
+
+.footer-btn {
+    &::before {
+        content: none;
+    }
+    ion-button {
+        --background: #59C05D;
+        width: 200px;
+        left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    --border-radius: 15px
+    }
+}
+.details{
+    margin-top:25%;
+}
+.help{
+    text-align: center;
+    color: #953A75;
+    font-weight:700;
+}
+.printers{
+    width:100%;
+}
+.label1{
+    float:left;
+}
+.label2{
+    float:right;
+    font-size: smaller;
+    padding: 10px;
+}
+.selected{
+    color:#59C05D;
+}
+.NotSelected{
+    color:#953A75;
+}
+.type{
+    font-size: smaller;
+}
+.radioBtn{
+    display:none;
+}
+ion-label {
+    display: inline;
+  }
+  
+  ion-radio {
+    display: none;
+  }
+  
+  ion-radio:checked + label {
+    border: solid 2px green;
+  }
+  

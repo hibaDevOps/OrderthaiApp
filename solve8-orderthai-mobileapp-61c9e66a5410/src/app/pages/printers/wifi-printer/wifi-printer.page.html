@@ -1,0 +1,34 @@
+<ion-content >
+    <div class="printer-type">
+       <div class="details">
+        <div class="detail">
+            Please Enter your network printer details
+        </div>
+        <div class="info">
+            To find your details, click and hold the feed button, then turn on your printer
+        </div>
+        <div class="info">
+            Keep holding on to the feed button, while the printer is power on, it should print out the configuration script at the end. This will include your ip address and port number.
+        </div>
+        <div class="info">
+          <ion-item class="itemform">
+            <ion-input placeholder="IP Address*" [(ngModel)]="name"></ion-input>
+          </ion-item>
+          <ion-item class="itemform">
+            <ion-input placeholder="Port*"></ion-input>
+          </ion-item>
+
+        </div>
+        
+        
+        </div>
+        
+    </div>
+
+    <div class="footer-btn">
+        <ion-button (click)='connect()'>Connect Printer</ion-button>
+    </div>
+    <div class="footer-btn" *ngIf="IP">
+        <ion-button (click)='redirectTo("/selected-printers")'>Next</ion-button>
+    </div>
+</ion-content>

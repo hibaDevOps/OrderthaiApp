@@ -1,0 +1,64 @@
+::ng-deep {
+    .info_app {
+        .popover-wrapper {
+            .popover-content {
+                top: calc(0% - -4em) !important;
+                left: auto !important;
+                right: 2% !important;
+                width: calc(100% - 4%) !important;
+                transform-origin: right top !important;
+                padding: 1em 1em 0;
+                font-weight: 800;
+                max-height: none;
+                overflow: visible;
+                max-width: 450px;
+                .head_info {
+                    display: inline-flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    h6 {
+                        margin: 0 0 1.5em;
+                        text-align: center;
+                        line-height: normal;
+                        font-size: 1.1em;
+                        font-weight: 600;
+                    }
+                    .info_img {
+                        width: 100%;
+                        display: inline-flex;
+                        text-align: center;
+                        justify-content: center;
+                        img {
+                            max-height: 350px;
+                            display: inline-block;
+                        }
+                        ion-button {
+                            margin: 0;
+                            position: absolute;
+                            bottom: 1em;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            --padding-start: 3.5em;
+                            --padding-end: 3.5em;
+                            --padding-top: .7em;
+                            --padding-bottom: .7em;
+                            height: auto !important;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                &::before {
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 12px 15px 12px;
+                    border-color: transparent transparent #fff transparent;
+                    position: absolute;
+                    top: -14px;
+                    right: 1.5%;
+                }
+            }
+        }
+    }
+}

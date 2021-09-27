@@ -1,0 +1,21 @@
+<ion-content>
+    <div class="banner_img">
+        <img class="banner" src="assets/images/oder_accept.png" alt="Banner image">
+    </div>
+    <div class="main-content">
+        <span>Call your customer to resolve the issue as politely as possible</span>
+        <a [href]="getTel(orderDetails?.mobile)">
+            <ion-button class="call">
+                <img src="assets/icon/phone.png" alt="Call img"> +61 {{orderDetails?.mobile}}
+            </ion-button>
+        </a>
+        <span>Mark this order as reject</span>
+        <ion-button class="reject" (click)="onReject()">
+            <img src="assets/icon/close.png" alt="Reject img"> Reject Order
+        </ion-button>
+        <div class="note">
+            <img src="assets/icon/information.png" alt="Information">
+            <span>Your customer will receive a notification about this action</span>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,161 @@
+<ion-content>
+    <ion-grid>
+        <ion-row class="map_full">
+            <ion-col size="12" class="ion-no-padding">
+                <google-map [options]="options" class="map_mian">
+                    <map-marker [position]="mark"></map-marker>
+                </google-map>
+            </ion-col>
+        </ion-row>
+        <ion-row [ngClass]="getOrderStatus()" *ngIf="orderDetail">
+            <!---For--Pandding-order="odr-pandding"----->
+            <!---For--Accept-order="odr-accept"--------->
+            <!---For--reject-order="odr-reject"--------->
+            <ion-col size="12" class="order-status-main">
+                <div class="order-status">
+                    <h3>{{orderDetail.orderStatus}}</h3>
+                </div>
+                <div class="order-timer">
+                    <span *ngIf="['pending'].includes(orderDetail.orderStatus.toLowerCase())">
+                        <img src="/assets/icon/order-reject.png" alt="order-reject" class="odr-panding-time">
+                        <img src="/assets/icon/delivery-truck.png" alt="order-reject" class="odr-accept-time">
+                        {{orderDetail.orderRemainingTime}}
+                    </span>
+                    <span class="status_time" *ngIf="['accepted'].includes(orderDetail.orderStatus.toLowerCase())">
+                        <span *ngIf="orderMethod =='delivery'" class="dark_grey">DELIVERY IN &nbsp; </span><span *ngIf="orderMethod =='pickup'" class="dark_grey">PICKUP IN &nbsp; </span>{{orderDetail.orderRemainingTime}}
+                    </span>
+                </div>
+            </ion-col>
+            <ion-col size="12" class="order-dtl">
+                <div class="order-dtl-inner">
+                    <div class="odr-names order-user">
+                        <p class="resto-name">{{orderDetail.name}}</p>
+                    </div>
+                    <div class="order-payment">
+                        <span>
+                              <span class="payment-status"><span class="payment-status-sign"><img src="/assets/icon/dollar-icon.svg"> &nbsp; </span>{{getPaymentStatus()}}</span>
+                           
+                        </span>
+                    </div>
+                </div>
+                <div class="order-dtl-inner">
+                    <div class="odr-names ">
+                        <span>
+                            <img src="/assets/icon/phn-icon.svg" alt="Phone number">
+                        </span>
+                        <p class="txt-phn" *ngIf="orderDetail.mobile"><a [href]="getTel(orderDetail.mobile)"
+                                *ngIf="orderDetail.mobile">+61 {{orderDetail.mobile}}</a><span class="new-customer" *ngIf="getNewCustomer()">New Customer</span> <span class="new-customer return-customer" *ngIf="!getNewCustomer()">regular Customer</span></p>
+                    </div>
+                   
+                </div>
+                <div class="order-dtl-inner">
+                    <div class="odr-names">
+                        <span>
+                            <img src="/assets/icon/mail-icon.svg" alt="Email ID">
+                        </span>
+                        <p>{{orderDetail.email}}</p>
+                    </div>
+                </div>
+                <div class="order-dtl-inner" *ngIf="orderMethod == 'delivery'">
+                    <div class="odr-names">
+                        <span>
+                            <img src="/assets/icon/address-icon.svg" alt="location-pin">
+                        </span>
+                        <p>{{orderDetail.address}}</p>
+                    </div>
+                </div>
+                <div class="order-dtl-inner" *ngIf="orderMethod==='table_reservation'">
+                    <div class="odr-names">
+                        <span>
+                            <img src="/assets/icon/round-table.png" alt="location-pin">
+                        </span>
+                        <p>{{orderDetail.reserveTime?"Table reservation: ":''}} {{orderDetail.resrveDate}} {{tConvert(orderDetail.reserveTime)}}</p>
+                    </div>
+                </div>
+                <div class="order-dtl-inner" *ngIf="orderMethod==='order_ahead' || (orderMethod =='pickup' && (orderDetail.reserveTime!=='' && orderDetail.resrveDate!=='')) || (orderMethod =='delivery' && (orderDetail.reserveTime!=='' && orderDetail.resrveDate!==''))">
+                    <div class="odr-names">
+                        <span>
+                            <img src="/assets/icon/shopping-bag.png" alt="location-pin">
+                        </span>
+                        <p>{{orderDetail.reserveTime?"Order for later: ":''}}{{orderDetail.resrveDate}} {{tConvert(orderDetail.reserveTime)}}</p>
+                    </div>
+                </div>
+             
+                <div class="order-dtl-inner" *ngIf="orderDetail.deliveryNote">
+                    <div class="odr-names">
+                        <span>
+                            <img src="/assets/icon/information.png" alt="information">
+                        </span>
+                        <p>{{orderDetail.deliveryNote}}</p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="12" class="order-item" *ngIf="orderMethod==='table_reservation'">
+                <div class="order-item-dtl">
+                    <div class="order-items">
+                        <div class="item-name">
+                            <h5>Number of Persons</h5>
+            
+                           
+                        </div>
+                        <div class="item-price">
+                            <h5>{{orderDetail.noOfPerson}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="12" class="order-item" *ngIf="orderMethod!=='table_reservation'">
+                <div class="order-item-dtl">
+                    <div class="order-items" *ngFor="let item of orderDetail.order">
+                        <div class="item-qut">
+                            {{item.quantity}}
+                        </div>
+                        <div class="item-name">
+                            <h5>{{item.productName}}</h5>
+                            
+                            <div *ngFor="let choices of item.orderProductChoices">
+                            <span >{{choices.groupName}} </span>
+                            <span>{{choices.groupOptionName}} (+{{choices.optionPrice?choices.optionPrice.split(".")[0]:0}}.00)</span>
+                            </div>
+                            <b class="item-note" >{{item.instructions?item.instructions:''}}</b>
+
+                        </div>
+                        <div class="item-price">
+                            <h5>{{getPrice(item)}}</h5>
+                        </div>
+                    </div>
+                    <div class="order-total">
+                        <div class="sub-total">
+                            <span>Subtotal</span>
+                            <span>{{getSubTotal()}}</span>
+                        </div>
+                        <div class="sub-total" *ngIf="isTaxAvailable()">
+                            <span>{{orderDetail.taxName+"("+orderDetail.tax+"%)"}}</span>
+                            <span>{{getTax()}}</span>
+                        </div>
+                        <div class="sub-total" *ngIf="orderMethod === 'delivery'">
+                            <span>Delivery Charges</span>
+                            <span>{{this.orderDetail.deliveryFee}}</span>
+                        </div>
+                        <div class="total">
+                            <span>Total (AUD)</span>
+                            <span>{{getTotal()}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="12" class="order-action">
+                <div class="order-pandding-btn">
+                    <ion-button color="success" (click)="replyOrder(true)">Accept</ion-button>
+                    <ion-button color="danger" (click)="replyOrder(false)">Reject</ion-button>
+                </div>
+                <div class="order-accept-btn">
+                    <ion-button class="copy_btn" (click)="copyToClipboard()"><img src="/assets/icon/copy.png"
+                            alt="Copy"> Copy</ion-button>
+                    <ion-button class="print_btn" (click)="printReceipt()"><img src="/assets/icon/printer.png"
+                            alt="Copy"> print</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

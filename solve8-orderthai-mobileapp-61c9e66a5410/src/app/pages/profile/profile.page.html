@@ -1,0 +1,35 @@
+<ion-content *ngIf="userDetail">
+    <ion-list>
+        <ion-item class="ion-no-padding">
+            <div class="profile-main">
+                <span>Name</span>
+                <div class="profile_input">
+                    <img src="assets/icon/account.png" alt="User">
+                    <p>{{userDetail.restaurantName}}</p>
+                </div>
+            </div>
+        </ion-item>
+        <ion-item class="ion-no-padding">
+            <div class="profile-main">
+                <span>Phone</span>
+                <div class="profile_input">
+                    <img src="assets/icon/phone.png" alt="User">
+                    <p>{{userDetail.phoneNumber}}</p>
+                </div>
+            </div>
+        </ion-item>
+        <ion-item class="ion-no-padding">
+            <div class="profile-main">
+                <span>Address</span>
+                <div class="profile_input">
+                    <img src="assets/icon/location-pin.png" alt="User">
+                    <p>{{getAddress()}}</p> 
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+    <div class="note">
+        <img src="assets/icon/clock_01.png">
+        <span>Account details can only be modifed via the web interface</span>
+    </div>
+</ion-content>

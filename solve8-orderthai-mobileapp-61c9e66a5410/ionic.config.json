@@ -1,0 +1,8 @@
+{
+  "name": "OrderThai App",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

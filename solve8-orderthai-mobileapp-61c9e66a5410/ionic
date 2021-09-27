@@ -1,0 +1,8 @@
+Checking Java JDK and Android SDK versions
+ANDROID_SDK_ROOT=undefined (recommended setting)
+ANDROID_HOME=undefined (DEPRECATED)
+Using Android SDK: C:\Users\hibas\AppData\Local\Android\sdk
+Subproject Path: CordovaLib
+Subproject Path: app
+Downloading https://services.gradle.org/distributions/gradle-6.5-all.zip
+

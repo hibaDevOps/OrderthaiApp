@@ -1,0 +1,106 @@
+
+<ion-content>
+      <ion-list>
+          <ion-item >
+            <ion-label>
+                <div class="feedback-main">
+                    <span class="title">G'Day</span>
+                </div>
+                <div class="feedback-main">
+                  <span class="feedback-dtl">Welcome, {{restaurant_name}}. Here's how your days been order thai.</span>
+                </div>
+               
+            </ion-label>
+        </ion-item>
+
+        <ion-item >
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6 >
+                    <div class="title">${{countSubtotal}}</div>
+                    <div>Today's Total</div>
+              </ion-col>
+      
+              <ion-col col-6 class="plan-right">
+                <div class="title">${{countYesterdaySubtotal}}</div>
+                <div class="small-txt">Yesterday's Total</div>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col col-6 >
+                    <div class="title">${{countSubtotal}}</div>
+                    <div class="small-txt">Subtotals</div>
+              </ion-col>
+      
+             
+              <ion-col col-4 class="plan-right">
+                <div class="info">
+                  <div class="icon-info">  <img src="/assets/icon/delivery-truck.png" alt="Delivery truck"></div>
+                <div class="info-txt">
+                <div class="title">{{countPickups}}</div>
+                <div class="small-txt">Pickups</div>
+                </div>
+                </div>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col col-6 >
+                    <div class="title">${{countDelieveriesSubTotal}}</div>
+                    <div class="small-txt">Delivery Fees</div>
+              </ion-col>
+      
+             
+              <ion-col col-4 class="plan-right">
+                <div class="info">
+                  <div class="icon-info">  <img src="/assets/icon/delivery-truck.png" alt="Delivery truck"></div>
+                <div class="info-txt">
+                <div class="title">{{countdeliveries}}</div>
+                <div class="small-txt">Deliveries</div>
+                </div>
+                </div>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col col-6 >
+                    <div class="title">${{countTaxes.toFixed(2)}}</div>
+                    <div class="small-txt">Taxes(GST)</div>
+              </ion-col>
+      
+             
+              <ion-col col-4 class="plan-right">
+                <div class="info">
+                  <div class="icon-info">  <img src="/assets/icon/delivery-truck.png" alt="Delivery truck"></div>
+                <div class="info-txt">
+                <div class="title">{{counttable}}</div>
+                <div class="small-txt">Reservations</div>
+                </div>
+                </div>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col col-6 >
+                    <div class="title payments">${{countOnline}}</div>
+                    <div class="small-txt">Online Payments</div>
+              </ion-col>
+      
+             
+              <ion-col col-4 class="plan-right">
+                <div class="title payments">${{countManual}}</div>
+                <div class="small-txt">Manual Payments</div>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col col-12 class="link-div" >
+                <div class="detail-txt">See detailed reports on <i>orderthai.com.au/login</i></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+     
+      </ion-list>
+</ion-content>

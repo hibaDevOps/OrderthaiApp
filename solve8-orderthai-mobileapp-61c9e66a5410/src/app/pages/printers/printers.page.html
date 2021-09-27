@@ -1,0 +1,18 @@
+<ion-content>
+    <ion-router-outlet></ion-router-outlet>
+    <ion-radio-group   allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChangePage($event)" [(ngModel)]="selectedRole" #radioGroup>
+
+    <ion-tabs selectedIndex="1">
+        <ion-tab-bar slot="top">
+            <div class="select-method">
+                <ion-radio  value="wifi" class="float-left" color="success" checked="true"></ion-radio>
+                <ion-label>WiFi or Network Cable</ion-label>
+            </div>
+            <div class="select-method">
+                <ion-radio  value="bluetooth" class="float-left" color="success" ></ion-radio>
+                <ion-label>Bluetooth Printer</ion-label>
+            </div>
+        </ion-tab-bar>
+    </ion-tabs>
+    </ion-radio-group>
+</ion-content>

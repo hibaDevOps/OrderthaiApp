@@ -1,0 +1,20 @@
+<ion-content>
+  <div class="printer-type">
+      <div >
+        <ion-row>
+          <ion-col>
+                  <ion-item *ngFor="let i of listPrinters;let j=index" >
+                  <ion-label>{{i}}</ion-label>
+                  <ion-label class="label2 NotSelected"  (click)="selectPrinter(i)">select this printer</ion-label>
+                  </ion-item>
+          </ion-col>
+        </ion-row>
+      </div> 
+  </div>
+  <div class="footer-btn">
+    <ion-button (click)="redirectTo('/selected-printers')">
+                <span>Next</span>
+                
+    </ion-button>
+  </div>
+</ion-content>

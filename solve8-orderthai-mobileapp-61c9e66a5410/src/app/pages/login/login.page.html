@@ -1,0 +1,37 @@
+<ion-content fullscreen class="login">
+    <form [formGroup]="loginForm">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12" class="ion-align-self-center">
+                    <div class="logo">
+                        <img src="../assets/images/logo.png" alt="Logo">
+                    </div>
+                </ion-col>
+                <ion-col size="12" class="ion-align-self-end">
+                    <ion-list lines="none" class="ion-no-margin">
+                        <ion-item class="login-input">
+                            <ion-input type="email" placeholder="Email" formControlName="email" maxLength="50">
+                                <img src="../assets/images/email.png" alt="Email icon">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="password" placeholder="Password" formControlName="password" maxLength="10">
+                                <img src="../assets/images/password.png" alt="password icon">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item class="remember_me">
+                            <ion-checkbox slot="start" mode="md"  #chk_remember (ionChange)="RememberMe($event)"></ion-checkbox>
+                            <ion-label>Remember Me?</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col size="12" class="ion-align-self-end">
+                    <ion-button expand="block" class="login_btn" (click)="login(loginForm)">Login</ion-button>
+                </ion-col>
+                <ion-col size="12" class="ion-justify-content-center ion-align-items-center" style="display: flex;">
+                    <a href="/forgot-password" class="forgot_pass">Forgot Password?</a>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

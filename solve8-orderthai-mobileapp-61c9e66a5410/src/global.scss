@@ -1,0 +1,100 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Core CSS required for Ionic components to work properly */
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+//*----------------------------Font-include-----------------------------*//
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-SemiBold.eot');
+    src: url('/assets/fonts/OpenSans-SemiBold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-SemiBold.woff2') format('woff2'), url('/assets/fonts/OpenSans-SemiBold.woff') format('woff'), url('/assets/fonts/OpenSans-SemiBold.ttf') format('truetype'), url('/assets/fonts/OpenSans-SemiBold.svg#OpenSans-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-ExtraBold.eot');
+    src: url('/assets/fonts/OpenSans-ExtraBold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-ExtraBold.woff2') format('woff2'), url('/assets/fonts/OpenSans-ExtraBold.woff') format('woff'), url('/assets/fonts/OpenSans-ExtraBold.ttf') format('truetype'), url('/assets/fonts/OpenSans-ExtraBold.svg#OpenSans-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-Regular.eot');
+    src: url('/assets/fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-Regular.woff2') format('woff2'), url('/assets/fonts/OpenSans-Regular.woff') format('woff'), url('/assets/fonts/OpenSans-Regular.ttf') format('truetype'), url('/assets/fonts/OpenSans-Regular.svg#OpenSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-BoldItalic.eot');
+    src: url('/assets/fonts/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-BoldItalic.woff2') format('woff2'), url('/assets/fonts/OpenSans-BoldItalic.woff') format('woff'), url('/assets/fonts/OpenSans-BoldItalic.ttf') format('truetype'), url('/assets/fonts/OpenSans-BoldItalic.svg#OpenSans-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-SemiBoldItalic.eot');
+    src: url('/assets/fonts/OpenSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-SemiBoldItalic.woff2') format('woff2'), url('/assets/fonts/OpenSans-SemiBoldItalic.woff') format('woff'), url('/assets/fonts/OpenSans-SemiBoldItalic.ttf') format('truetype'), url('/assets/fonts/OpenSans-SemiBoldItalic.svg#OpenSans-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-Light.eot');
+    src: url('/assets/fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-Light.woff2') format('woff2'), url('/assets/fonts/OpenSans-Light.woff') format('woff'), url('/assets/fonts/OpenSans-Light.ttf') format('truetype'), url('/assets/fonts/OpenSans-Light.svg#OpenSans-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/OpenSans-Bold.eot');
+    src: url('/assets/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/OpenSans-Bold.woff2') format('woff2'), url('/assets/fonts/OpenSans-Bold.woff') format('woff'), url('/assets/fonts/OpenSans-Bold.ttf') format('truetype'), url('/assets/fonts/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+//*----------------------------End-Font-include-----------------------------*//
+* {
+    font-family: 'Montserrat'!important;
+}

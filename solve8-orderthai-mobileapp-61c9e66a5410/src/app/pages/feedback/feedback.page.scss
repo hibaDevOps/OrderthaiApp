@@ -1,0 +1,88 @@
+ion-content {
+    --background: #F6F7FF;
+    display: flex;
+    .main-content {
+        margin: 15px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        height: -webkit-fill-available;
+    }
+    ion-item {
+        border-bottom: 1px solid #707070;
+        margin-left: 1em;
+        margin-right: 1em;
+        --min-height: auto;
+        --padding-top: .8em;
+        --padding-bottom: .8em;
+        --inner-padding-end: 0;
+        .feedback-title {
+            margin: 0;
+            min-width: 45px;
+        }
+        .feedback-dtl {
+            margin-left: 10px;
+        }
+        ion-label {
+            width: 100%;
+            margin: 0;
+            max-width: none;
+            .feedback-main {
+                margin-bottom: 5px;
+                ion-textarea {
+                    span {
+                        font-size: 16px;
+                    }
+                    .textarea-wrapper {
+                        font-size: 16px;
+                        --padding-start: 0;
+                        --padding-top: 10px;
+                    }
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    ion-item:last-child {
+        --border-color: transparent;
+        --highlight-background: none;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 146px;
+        ion-textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+            font-size: 14px;
+        }
+    }
+    ion-item>span {
+        margin-left: 5px;
+    }
+    ion-list {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: -webkit-fill-available;
+    }
+}
+
+ion-footer::before {
+    background-image: none !important;
+    margin: 0;
+}
+
+ion-footer {
+    padding: 0 10px 10px 10px;
+    ion-button {
+        display: flex;
+        --background: #59C05D;
+        font-weight: 600;
+        text-transform: none;
+    }
+}

@@ -1,0 +1,37 @@
+<ion-content>
+    <div class="main-content">
+        <ion-list lines="none">
+            <ion-item class="ion-no-padding">
+                <span class="feedback-title">From:</span><span class="feedback-dtl">{{restaurantEmail}}</span>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+                <span class="feedback-title">To:</span><span class="feedback-dtl">{{toEmail}}</span>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+                <span class="feedback-title">{{title}}</span>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+                <ion-label>
+                    <div class="feedback-main">
+                        <span class="feedback-title">Restaurant ID:</span>
+                        <span class="feedback-dtl">{{restaurantId}}</span>
+                    </div>
+                    <div class="feedback-main">
+                        <span class="feedback-title">App version:</span>
+                        <span class="feedback-dtl">{{version}}</span>
+                    </div>
+                    <div class="feedback-main">
+                        <ion-textarea auto-grow="true" autofocus="true"  [(ngModel)]="feedback">
+                            <span class="feedback-title">Your message:</span>
+                        </ion-textarea>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-button (click)="sendFeedback()">
+        Send feedback
+    </ion-button>
+</ion-footer>

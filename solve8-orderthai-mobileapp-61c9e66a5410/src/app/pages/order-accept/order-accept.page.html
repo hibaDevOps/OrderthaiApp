@@ -1,0 +1,25 @@
+<ion-content>
+    <div class="banner_img">
+        <img class="banner" src="assets/images/oder_accept.png" alt="Banner image">
+    </div>
+    <div class="main-content">
+        <span *ngIf="orderDetails?.reserveTime == ''">Delivery time</span>
+        <span *ngIf="orderDetails?.reserveTime != ''">Confirmation Time</span>
+
+        <ion-item *ngIf="orderDetails?.reserveTime == ''">
+            <ion-input type="tel" placeholder="30 min" autofocus="true" [(ngModel)]="orderTime" value="{{order_for_later?order_for_later:''}}"></ion-input>
+            <ion-img src="assets/icon/clock_01.png" slot="start"></ion-img>
+        </ion-item>
+        <ion-item *ngIf="orderDetails?.reserveTime != ''">
+            <ion-card-subtitle>Order Confirmed for: {{order_for_later}}</ion-card-subtitle>
+        </ion-item>
+        <span class="note" *ngIf="orderDetails?.reserveTime == ''">We'll send a confirmation including delivery time to your customer</span>
+        <span class="note" *ngIf="orderDetails?.reserveTime != ''">We'll send a confirmation including order time to your customer</span>
+
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-button (click)="onAccept()">
+        Accept & Confirm
+    </ion-button>
+</ion-footer>

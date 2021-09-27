@@ -1,0 +1,83 @@
+ion-content {
+    --background: #F6F7FF;
+    .printer-type {
+        padding: 0em 1em 0.5em;
+        display: inline-block;
+        width: 100%;
+        height: calc(100% - 4.5em);
+        .detail {
+            text-align: center;
+            font-size: 1.2em;
+            width: 100%;
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 1em;
+            letter-spacing: .5px;
+            color: #333;
+        }
+        .info {
+            text-align: center;
+            font-size: 1em;
+            width: 100%;
+            display: inline-block;
+            font-weight: 500;
+            margin-bottom: 1em;
+            letter-spacing: .5px;
+            color: #888;
+        }
+        .printer-img {
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            img {
+                max-width: 400px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.footer-btn {
+    &::before {
+        content: none;
+    }
+    ion-button {
+        --background: #59C05D;
+        width: 200px;
+        left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    --border-radius: 15px
+    }
+}
+.details{
+    margin-top:25%;
+}
+.help{
+    text-align: center;
+    color: #953A75;
+    font-weight:700;
+}
+.printers{
+    width:100%;
+}
+.label1{
+    float:left;
+}
+.label2{
+    float:right;
+    font-size: smaller;
+    padding: 10px;
+}
+.selected{
+    color:#59C05D;
+}
+.NotSelected{
+    color:#953A75;
+}
+.type{
+    font-size: smaller;
+}
+.radioBtn{
+    display:none;
+}

@@ -1,0 +1,62 @@
+<ion-content>
+    <div class="printer-type">
+        <div class="details" *ngIf="init" >
+            <div class="detail">
+                To connect to the Bluetooth printer press on the Bluetooth button on the printer for about 10 seconds.
+            </div>
+            <div class="info">
+                If the printer does not apppear in the app, please repeat the process.(Note: most printers have a LED that lights up when Bluetooth is on)
+            </div>
+            <div class="help">
+              Need Help?
+          </div>
+           
+        </div>
+        <div class="details" *ngIf="searching">
+          <div class="info">
+           Searching for printers ....<br/>
+           Please hold tight? <br/>
+          </div>
+        </div>
+        <div class="details" *ngIf="!searching && !listToggle && !init">
+          <div class="info">
+           No printers were found .<br/>
+           Please try again <br/>
+          </div>
+        </div>
+        <div  *ngIf="listToggle">
+          <ion-row>
+            <ion-col>
+                <ion-item *ngFor="let i of pairedList;let j=index" >
+                  <ion-label>{{i.name}}</ion-label>
+                  <ion-label class="label2 NotSelected" (click)="selectPrinter(i.address,i)" *ngIf="!i.selected">select this printer</ion-label>
+                  <ion-label class="label2 selected"  *ngIf="i.selected">selected</ion-label>
+                  </ion-item>
+                  
+            </ion-col>
+         
+          </ion-row>
+
+         
+        </div> 
+        <span>{{Error}}</span>
+
+           
+        
+     
+            
+    </div>
+    <div class="footer-btn">
+      <ion-button (click)="listPairedDevices()">
+                  <span>{{btn_txt}}</span>
+                  
+      </ion-button>
+    </div>
+   
+    <div  class="footer-btn" *ngIf="MAC!=''" (click)="redirectTo('/selected-printers')">
+      <ion-button>
+                  <span>Next</span>
+      </ion-button>
+    </div>
+    
+</ion-content>

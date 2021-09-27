@@ -1,0 +1,71 @@
+ion-content {
+    --background: #F6F7FF;
+    .banner_img {
+        padding: 2.5em 1em 1em;
+    }
+    .main-content {
+        margin-top: 0;
+        padding: 1em;
+        span {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 1em;
+        }
+        .call {
+            --background: #59C05D;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .reject {
+            --background: #F45858;
+        }
+        ion-button {
+            width: 100%;
+            margin: 0;
+            margin-bottom: 1em;
+            height: 40px;
+            img {
+                height: 55%;
+                margin-right: 10px;
+                filter: brightness(0) invert(1);
+            }
+            &.reject {
+                img {
+                    height: 40%;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .note {
+        display: inline-block;
+        width: 100%;
+        img {
+            position: relative;
+            width: 20px;
+            filter: brightness(0) invert(0.6);
+            float: left;
+        }
+        span {
+            text-align: center;
+            display: inline-block;
+            color: #AAAAAA;
+            width: calc(100% - 20px);
+            float: left;
+            font-weight: 500;
+            line-height: 25px;
+            letter-spacing: .3px;
+            padding-left: 10px;
+        }
+    }
+}
+
+ion-content::after {
+    padding: 10px !important;
+    margin: 20px !important;
+}

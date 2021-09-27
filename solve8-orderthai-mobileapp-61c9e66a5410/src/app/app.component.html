@@ -1,0 +1,73 @@
+<ion-app>
+    <ion-split-pan>
+        <ion-menu side="start" menuId="first" contentId="main" autoHide="true" class="side-menu">
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title><img src="/assets/images/logo.png" alt="Logo"></ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <ion-list lines="none">
+                    <ion-item (click)="redirectTo('my-orders')"><span><img src="/assets/icon/shopping-cart.png"
+                                alt="My orders"></span> My orders</ion-item>
+                    <ion-item (click)="redirectTo('test')"><span><img src="/assets/icon/order.png"
+                                alt="New test order"></span> New test order</ion-item>
+                    <ion-item (click)="redirectTo('clear')"><span><img src="/assets/icon/trash.png"
+                                alt="Clear orders"></span> Clear orders</ion-item>
+                    <ion-item (click)="redirectTo('profile')"><span><img src="/assets/icon/account.png"
+                                alt="My account"></span> My Account</ion-item>
+                    <ion-item (click)="redirectTo('reports')"><span><img src="/assets/icon/dashboard.png"
+                                    alt="Reports"></span> Reports</ion-item>
+                    <ion-item (click)="redirectTo('orders-paused')"><span><img src="/assets/icon/banned.png"
+                                        alt="Reports"></span> Orders Paused</ion-item>
+                    <ion-item (click)="redirectTo('feedback')"><span><img src="/assets/icon/comment.png"
+                                alt="Feedback"></span> Feedback</ion-item>
+                    <!-- <ion-item (click)="redirectTo('languages')"><span><img src="/assets/icon/translation.png"
+                                alt="Languages"></span> Languages</ion-item> -->
+                    <ion-item (click)="redirectTo('thermal-printer')"><span><img src="/assets/icon/printer.png"
+                                alt="Thermal printer"></span> Thermal printer</ion-item>
+                    <ion-item (click)="redirectTo('terms-and-conditions')"><span><img src="/assets/icon/terms.png"
+                                alt="Terns and confition"></span> Terms and Conditions</ion-item>
+                    <ion-item (click)="redirectTo('about-us')"><span><img src="/assets/icon/information.png"
+                                alt="About"></span> About</ion-item>
+                    <ion-item (click)="redirectTo('logout')"><span><img src="/assets/icon/sign-out.png"
+                                alt="Logout"></span> Logout</ion-item>
+                    
+                    <ion-item class="pause-orders">
+                        <div class="order-pandding-btn" *ngIf="is_pause == 0">
+                        <ion-button class="pause-btn" (click)="redirectTo('orders-paused')" style="--background:#d8a607" >Pause new orders</ion-button>
+                       </div>
+                       <div class="order-pandding-btn"  *ngIf="is_pause == 1" >
+                        <ion-button class="pause-btn"  style="--background:darkgrey"  >Pause New orders</ion-button>
+                       </div>
+                </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-header class="header" [hidden]="checkLogin()">
+            <ion-toolbar class="header-main">
+                <ion-buttons slot="start" id="filter" [hidden]="menuVisibility()">
+                    <ion-menu-button color="primary"></ion-menu-button>
+                </ion-buttons>
+                <ion-buttons slot="start" id="filter" [hidden]="!menuVisibility()">
+                    <ion-button (click)="onBack()">
+                        <ion-img src="assets/icon/back.png" style="height: 20px;"></ion-img>
+                    </ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end" id="help">
+                    <ion-button (click)="presentPopover()">
+                        <ion-img src="assets/icon/information.png" style="width: 23px; filter: brightness(3.5);">
+                        </ion-img>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title></ion-title>
+                <ion-title>
+                    <p *ngIf="getTitle().includes('#')" class="subtitle">{{getSubtitle()}}</p>
+                    <p>{{getTitle()}}</p>
+                </ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-router-outlet [class]="getRouterClass()" id="main"></ion-router-outlet>
+        <!-- <ion-router-outlet [class]="getClass()" id="main"></ion-router-outlet> -->
+    </ion-split-pan>
+</ion-app>
