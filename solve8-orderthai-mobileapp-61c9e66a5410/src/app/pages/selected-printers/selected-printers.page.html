@@ -14,12 +14,12 @@
 
             <ion-item>
               <ion-label >FOH Docket / Client Receipt</ion-label>
-               <ion-toggle #toggleComponent2 [value]="i.counterReciept=='0'?false:true"  (ionChange)="toggleBluetoothCounter($event)"></ion-toggle>
+               <ion-toggle #toggleComponent2 [value]="i.counterReciept=='0'?false:true" [(ngModel)]="i.counterReciept"  (ionChange)="toggleBluetoothCounter($event)"></ion-toggle>
              </ion-item>
 
              <ion-item>
               <ion-label>Kitchen Essentials</ion-label>
-              <ion-toggle #toggleComponent1 [value]="i.kitchenReciept=='0'?false:true" (ionChange)="toggleBluetoothKitchen($event)"></ion-toggle>
+              <ion-toggle #toggleComponent1 [value]="i.kitchenReciept=='0'?false:true" [(ngModel)]="i.kitchenReciept" (ionChange)="toggleBluetoothKitchen($event)"></ion-toggle>
               </ion-item>
              
           </div> 

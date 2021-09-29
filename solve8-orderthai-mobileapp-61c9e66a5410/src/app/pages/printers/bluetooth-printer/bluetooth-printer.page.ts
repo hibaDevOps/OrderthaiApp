@@ -160,16 +160,8 @@ export class BluetoothPrinterPage implements OnInit {
       printer.restaurantId=this.restaurantInfo.id;
       printer.printerType="bluetooth";
       await this.printerService.savePrinterList(printer,false);
-      if(i!=null){
-      if( !i.selected){
-        i.selected=true;
-      }else{
-        i.selected=false;
-      }
-    }
-      
-    
-    this.selectDevice();
+      i.selected=true;
+      this.selectDevice();
   }
   deviceConnected() {
     // Subscribe to data receiving as soon as the delimiter is read

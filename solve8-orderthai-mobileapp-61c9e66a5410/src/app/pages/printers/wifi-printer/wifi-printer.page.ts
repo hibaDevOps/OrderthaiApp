@@ -5,6 +5,7 @@ import {GlobalConstants} from 'src/app/common/global';
 import { AlertController, MenuController, ModalController, NavController, Platform, PopoverController } from '@ionic/angular';
 import { ActivatedRoute,  Router } from '@angular/router'
 import { Printer } from 'src/app/Models/printer';
+import {PrinterAPIService} from 'src/app/services/ApiService/printer_api.service';
 declare var Socket: any;
 @Component({
   selector: 'app-wifi-printer',
@@ -22,7 +23,8 @@ export class WifiPrinterPage {
 
   constructor(private network: Network,private wiz:WifiWizard2,private navCtrl: NavController,
     private actRoute:ActivatedRoute,
-    private router:Router) { 
+    private router:Router,
+    private printerService:PrinterAPIService) { 
     if (this.network.type == 'none'){
       this.error="no network"
 
@@ -53,7 +55,7 @@ export class WifiPrinterPage {
   
 }
 
-   connect(){
+   async connect(){
       this.IP=this.name;
       
       GlobalConstants.selectWifiPrinter=this.IP;
@@ -64,7 +66,9 @@ export class WifiPrinterPage {
       printer.kitchenReciept="";
       printer.counterReciept="";
       printer.restaurantId="17";
+      
       GlobalConstants.listWifiPrinter.push(printer);
+      await this.printerService.savePrinterList(printer);
       console.log(GlobalConstants.selectWifiPrinter);
      
   }
