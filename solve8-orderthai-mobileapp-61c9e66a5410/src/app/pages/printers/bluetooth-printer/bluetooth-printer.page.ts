@@ -151,16 +151,14 @@ export class BluetoothPrinterPage implements OnInit {
     this.MAC=address;
     GlobalConstants.selectedPrinter=this.MAC;
    // this.btn_txt="Next";
-   this.Error = this.Error + " After two lines";
     var printer:Printer=new Printer();
       printer.printerAddress=this.MAC;
       printer.port="";
       printer.kitchenReciept="0";
       printer.counterReciept="0";
-      printer.restaurantId=this.restaurantInfo.id;
+      printer.restaurantId=localStorage.getItem("myRestaurantId");
       printer.printerType="bluetooth";
       await this.printerService.savePrinterList(printer,false);
-      i.selected=true;
       this.selectDevice();
   }
   deviceConnected() {

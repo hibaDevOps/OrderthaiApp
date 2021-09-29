@@ -1,6 +1,6 @@
 export class Printer {
    
-    Id:number;
+    id:number;
     printerAddress: string="";
     port:string="";
     printerType: string="";

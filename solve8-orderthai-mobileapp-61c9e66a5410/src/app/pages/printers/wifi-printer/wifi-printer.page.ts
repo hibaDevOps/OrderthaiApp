@@ -65,7 +65,7 @@ export class WifiPrinterPage {
       printer.port=this.PORT;
       printer.kitchenReciept="";
       printer.counterReciept="";
-      printer.restaurantId="17";
+      printer.restaurantId=localStorage.getItem("myRestaurantId");
       
       GlobalConstants.listWifiPrinter.push(printer);
       await this.printerService.savePrinterList(printer);

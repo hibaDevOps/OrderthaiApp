@@ -163,6 +163,8 @@ export class AppComponent {
     this.restaurant_name=user.restaurant.restaurantName;
     this.restaurant_id=user.user.id;
     this.is_pause=user.restaurant.pause;
+    localStorage.setItem("myRestaurantId",user.user.id);
+    localStorage.setItem("myRestaurantName",user.restaurant.restaurantName);
 
 
   }

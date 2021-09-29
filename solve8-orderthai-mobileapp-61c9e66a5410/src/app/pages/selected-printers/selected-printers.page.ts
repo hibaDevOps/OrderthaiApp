@@ -40,11 +40,11 @@ export class SelectedPrintersPage implements OnInit {
   async getPrinters(restaurant_id){
    this.getAllPrinters=(await this.printerService.getPrinterFromId(restaurant_id));
    this.getAllPrinters.sort((a, b) => {
-    return (b.Id - a.Id);
+    return (b.id - a.id);
   });
 
   this.getAllPrinters.map((item) => {
-    item.Id = (item.Id) ? item.Id : item.Id;
+    item.id = (item.id) ? item.id : item.id;
     item.printerType = (item.printerType && item.printerType.length > 0) ? item.printerType : '';
     item.port=(item.port) ? item.port : '';
     item.counterReciept=item.counterReciept;
@@ -58,7 +58,7 @@ export class SelectedPrintersPage implements OnInit {
     this.wifiPrinter=GlobalConstants.selectWifiPrinter;
     this.listOfBluetooth=GlobalConstants.listBluetoothPrinter;
     this.listOfWifi=GlobalConstants.listWifiPrinter;
-    this.getPrinters("17");
+    this.getPrinters(localStorage.getItem("myRestaurantId"));
     
     console.log(this.wifiPrinter);
   }
