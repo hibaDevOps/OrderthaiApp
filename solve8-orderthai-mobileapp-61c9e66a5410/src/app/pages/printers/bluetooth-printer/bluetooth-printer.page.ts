@@ -14,6 +14,9 @@ import { TextFormat } from 'src/app/services/EscService/Commands';
 import { AlertController, MenuController, ModalController, NavController, Platform, PopoverController } from '@ionic/angular';
 import { ActivatedRoute,  Router } from '@angular/router'
 import { Printer } from 'src/app/Models/printer';
+import {MyApiService}from 'src/app/services/ApiService/my-api.service';
+import {PrinterAPIService} from 'src/app/services/ApiService/printer_api.service';
+
 
 
 @Component({
@@ -34,35 +37,25 @@ export class BluetoothPrinterPage implements OnInit {
   toggle_kitchen:boolean=false;
   toggle_counter:boolean=false;
   bluetoothList:any=[];
+  restaurantInfo:any;
 
   
   constructor(private storageService: StorageManager,private utils:UtilService,private bluetooth:BluetoothSerial,private gv:GlobalConstants,private navCtrl: NavController,
     private actRoute:ActivatedRoute,
-    private router:Router) {
+    private router:Router,
+    private printerService:PrinterAPIService,
+    private apiService:MyApiService) {
      
+     }
+
+     async getRestaurant(){
+      const user = (await this.apiService.getUserDetails()).data;
+       this.restaurantInfo=user.restaurant;    
      }
 
   ngOnInit() {
     this.btn_txt="Start Search";
-    const doc = new Document();
-    let escposCommands;
-    ESCPOSImage.load('data:image/png;base64,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').then(logo => {
-    escposCommands = doc
-        .newLine()
-        .newLine()
-        .newLine()
-        .reverseColors(true)
-        .style([FontStyle.Bold])
-        .font(FontFamily.A)
-        .align(TextAlignment.LeftJustification)
-        .text("Estimated Time")
-        .align(TextAlignment.RightJustification)
-        .newLine()
-        .feed(5)
-        .cut()
-        .generateUInt8Array();
-    console.log(escposCommands);
-  });
+    this.getRestaurant();
     
   }
 
@@ -85,6 +78,7 @@ export class BluetoothPrinterPage implements OnInit {
       this.btn_txt="Start Search";
       this.Error="Paired device";
       GlobalConstants.listBluetoothPrinter=this.pairedList.address;
+      
      // console.log(GlobalConstants.listBluetoothPrinter);
     
     }, error => {
@@ -152,23 +146,29 @@ export class BluetoothPrinterPage implements OnInit {
       GlobalConstants.counter=1;
     }
   }
-  selectPrinter(address:any,i:any){
+ async selectPrinter(address:any,i?:any){
     this.Error=address;
     this.MAC=address;
     GlobalConstants.selectedPrinter=this.MAC;
    // this.btn_txt="Next";
    this.Error = this.Error + " After two lines";
     var printer:Printer=new Printer();
-      printer.address="";
+      printer.address=this.MAC;
       printer.port="";
-      printer.Kitchen_receipt="";
-      printer.counter_receipt="";
-      printer.restaurant_id="17";
+      printer.Kitchen_receipt="0";
+      printer.counter_receipt="0";
+      printer.restaurant_id=this.restaurantInfo.id;
+      printer.printer_type="bluetooth";
       this.Error = this.Error + " After Printer receipt lines";   
-      this.Error=this.Error+" "+printer.address+printer.port+printer.Kitchen_receipt+printer.counter_receipt+printer.restaurant_id+printer.printer_type;
-   // GlobalConstants.listBluetoothPrinter.push(printer);
-    this.Error = this.Error + " After list of bluetoothPrinter add lines";
-    //this.bluetoothList=GlobalConstants.listBluetoothPrinter;
+      await this.printerService.savePrinterList(printer,false);
+      if(i!=null){
+      if( !i.selected){
+        i.selected=true;
+      }else{
+        i.selected=false;
+      }
+    }
+      
     
     this.selectDevice();
   }

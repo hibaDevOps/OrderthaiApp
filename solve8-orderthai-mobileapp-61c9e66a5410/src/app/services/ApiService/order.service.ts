@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Order } from 'src/app/Models/order';
+import { Printer } from 'src/app/Models/printer';
 import { MyApiService } from './my-api.service';
 
 @Injectable({
@@ -25,6 +26,9 @@ export class OrderService extends MyApiService {
     }
     updateStatus(id, status, time): Promise<any> {
         return this.post('orderAction', { deliveryTime: time, orderId: id, action: status });
+    }
+    savePrinter(print_info): Promise<Printer> {
+        return this.post<Printer>('savePrinter', { printer:print_info });
     }
 
     clearOrder(): Promise<any> {

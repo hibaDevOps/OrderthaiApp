@@ -4,7 +4,10 @@ import { AlertController, MenuController, ModalController, NavController, Platfo
 import { ActivatedRoute,  Router } from '@angular/router'
 import {MyNavService} from 'src/app/services/NavService/my-nav.service';
 import {OrderService} from 'src/app/services/ApiService/order.service';
+import {PrinterAPIService}from 'src/app/services/ApiService/printer_api.service';
+
 import { Printer } from 'src/app/Models/printer';
+import { MyApiService } from 'src/app/services/ApiService/my-api.service';
 
 @Component({
   selector: 'app-selected-printers',
@@ -26,16 +29,23 @@ export class SelectedPrintersPage implements OnInit {
   constructor(private gv:GlobalConstants,private navCtrl: NavController,
     private actRoute:ActivatedRoute,
     private router:Router,private navService:MyNavService,
-    private orderService:OrderService) { 
+    private orderService:OrderService,
+    private apiService:MyApiService,
+    private printerService:PrinterAPIService) { 
       navService.title="What Dockets?";
     }
+
+  async getPrinters(restaurant_id){
+    await this.printerService.getPrinterFromId(restaurant_id);
+  }
 
   ngOnInit() {
     this.bluetoothPrinter=GlobalConstants.selectedPrinter;
     this.wifiPrinter=GlobalConstants.selectWifiPrinter;
     this.listOfBluetooth=GlobalConstants.listBluetoothPrinter;
     this.listOfWifi=GlobalConstants.listWifiPrinter;
-   
+    this.getPrinters("17");
+    
     console.log(this.wifiPrinter);
   }
 
