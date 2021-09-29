@@ -24,6 +24,8 @@ export class SelectedPrintersPage implements OnInit {
 
   public toggle_wifi_kitchen:boolean=false;
   public toggle_wifi_counter:boolean=false;
+
+  public getAllPrinters:Printer[]=[];
   
 
   constructor(private gv:GlobalConstants,private navCtrl: NavController,
@@ -36,7 +38,19 @@ export class SelectedPrintersPage implements OnInit {
     }
 
   async getPrinters(restaurant_id){
-    await this.printerService.getPrinterFromId(restaurant_id);
+   this.getAllPrinters=(await this.printerService.getPrinterFromId(restaurant_id));
+   this.getAllPrinters.sort((a, b) => {
+    return (b.Id - a.Id);
+  });
+
+  this.getAllPrinters.map((item) => {
+    item.Id = (item.Id) ? item.Id : item.Id;
+    item.printerType = (item.printerType && item.printerType.length > 0) ? item.printerType : '';
+    item.port=(item.port) ? item.port : '';
+    item.counterReciept=item.counterReciept;
+    item.kitchenReciept=item.kitchenReciept;
+  });
+   console.log(this.getAllPrinters);
   }
 
   ngOnInit() {

@@ -1,10 +1,10 @@
 <ion-content>
   <div class="printer-type">
-      <div *ngFor="let i of listOfBluetooth;">
+      <div *ngFor="let i of getAllPrinters;">
         <ion-row>
           <ion-col>
               <ion-item>
-                <ion-label>{{i.address}}<span class="type"><br/>Bluetooth printer</span></ion-label>
+                <ion-label>{{i.printerAddress}}<span class="type"><br/>{{i.printerType}}</span></ion-label>
                 </ion-item>
           </ion-col>
         </ion-row>
@@ -14,44 +14,19 @@
 
             <ion-item>
               <ion-label >FOH Docket / Client Receipt</ion-label>
-               <ion-toggle #toggleComponent2 [value]="i.counter_receipt=='0'?false:true"  (ionChange)="toggleBluetoothCounter($event)"></ion-toggle>
+               <ion-toggle #toggleComponent2 [value]="i.counterReciept=='0'?false:true"  (ionChange)="toggleBluetoothCounter($event)"></ion-toggle>
              </ion-item>
 
              <ion-item>
               <ion-label>Kitchen Essentials</ion-label>
-              <ion-toggle #toggleComponent1 [value]="i.Kitchen_receipt=='0'?false:true" (ionChange)="toggleBluetoothKitchen($event)"></ion-toggle>
+              <ion-toggle #toggleComponent1 [value]="i.kitchenReciept=='0'?false:true" (ionChange)="toggleBluetoothKitchen($event)"></ion-toggle>
               </ion-item>
              
           </div> 
           </ion-col>
         </ion-row>
       </div> 
-      <ion-item-divider *ngIf="wifiPrinter!='' && bluetoothPrinter!=''"></ion-item-divider>
-      <div *ngFor="let i of listOfWifi;">
-        <ion-row>
-          <ion-col>
-              <ion-item>
-                <ion-label>{{i.address}}<span class="type"><br/>WiFi printer</span></ion-label>
-                </ion-item>
-          </ion-col>
-        </ion-row>
-          <ion-row>
-            <ion-col>
-          <div>
-            <ion-item>
-              <ion-label >FOH Docket / Client receipt </ion-label>
-               <ion-toggle #toggleComponent4 [value]="i.counter_receipt=='0'?false:true"  (ionChange)="toggleWifiCounter($event)"></ion-toggle>
-             </ion-item>
-
-            <ion-item>
-              <ion-label>Kitchen Essentials</ion-label>
-              <ion-toggle #toggleComponent3 [value]="i.Kitchen_receipt=='0'?false:true"  (ionChange)="toggleWifiKitchen($event)"></ion-toggle>
-              </ion-item>
-             
-          </div> 
-          </ion-col>
-        </ion-row>
-      </div> 
+     
   </div>
  
   <div class="footer-btn">

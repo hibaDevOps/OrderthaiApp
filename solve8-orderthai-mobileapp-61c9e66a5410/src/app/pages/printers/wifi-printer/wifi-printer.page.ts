@@ -59,11 +59,11 @@ export class WifiPrinterPage {
       GlobalConstants.selectWifiPrinter=this.IP;
       this.error=GlobalConstants.selectWifiPrinter;
       var printer :Printer=new Printer();
-      printer.address=this.IP;
+      printer.printerAddress=this.IP;
       printer.port=this.PORT;
-      printer.Kitchen_receipt="";
-      printer.counter_receipt="";
-      printer.restaurant_id="17";
+      printer.kitchenReciept="";
+      printer.counterReciept="";
+      printer.restaurantId="17";
       GlobalConstants.listWifiPrinter.push(printer);
       console.log(GlobalConstants.selectWifiPrinter);
      

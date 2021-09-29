@@ -32,12 +32,7 @@ export class ListPrintersPage implements OnInit {
     
   }
   savePrinter(){
-    var printer:Printer=new Printer();
-    printer.address="8900:09090";
-    printer.printer_type="bluetooth";
-    printer.restaurant_id="17";
-    this.selectedPrintersList.push(printer);
-    console.log(this.selectedPrintersList);
+    
     //this.orderService.savePrinterList(this.selectedPrintersList);
   }
   ionViewDidEnter(){
@@ -45,9 +40,11 @@ export class ListPrintersPage implements OnInit {
   }
   selectPrinter(address:any){
     var printer:Printer=new Printer();
-    printer.address="8900:09090";
-    printer.printer_type="bluetooth";
-    printer.restaurant_id="17";
+    printer.printerAddress='';
+      printer.port='';
+      printer.kitchenReciept="";
+      printer.counterReciept="";
+      printer.restaurantId="17";
     GlobalConstants.listBluetoothPrinter.push(printer);
     console.log(GlobalConstants.listBluetoothPrinter);
     
@@ -57,11 +54,7 @@ export class ListPrintersPage implements OnInit {
   }
  
   redirectTo(path: string) {
-    var printer:Printer=new Printer();
-    printer.address="8900:09090";
-    printer.printer_type="bluetooth";
-    printer.restaurant_id="17";
-    GlobalConstants.listBluetoothPrinter.push(printer);
+    
     this.navCtrl.navigateRoot(path); 
 }
 }

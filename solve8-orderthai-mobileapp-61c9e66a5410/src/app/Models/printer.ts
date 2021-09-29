@@ -1,10 +1,11 @@
 export class Printer {
    
-    address: string="";
+    Id:number;
+    printerAddress: string="";
     port:string="";
-    printer_type: string="";
-    restaurant_id: string="";
-    Kitchen_receipt:string="";
-    counter_receipt:string="";
+    printerType: string="";
+    restaurantId: string="";
+    kitchenReciept:string="";
+    counterReciept:string="";
   }
   
