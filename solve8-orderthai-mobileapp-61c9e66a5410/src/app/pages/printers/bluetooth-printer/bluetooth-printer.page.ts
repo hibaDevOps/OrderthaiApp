@@ -38,6 +38,8 @@ export class BluetoothPrinterPage implements OnInit {
   toggle_counter:boolean=false;
   bluetoothList:any=[];
   restaurantInfo:any;
+  getAllPrinter:Printer[]=[];
+  listPaired:boolean=false;
 
   
   constructor(private storageService: StorageManager,private utils:UtilService,private bluetooth:BluetoothSerial,private gv:GlobalConstants,private navCtrl: NavController,
@@ -52,10 +54,14 @@ export class BluetoothPrinterPage implements OnInit {
       const user = (await this.apiService.getUserDetails()).data;
        this.restaurantInfo=user.restaurant;    
      }
-
+     async getPrinters(restaurant_id){
+      this.getAllPrinter=(await this.printerService.getPrinterFromId(restaurant_id));
+     }
   ngOnInit() {
     this.btn_txt="Start Search";
     this.getRestaurant();
+    this.getPrinters(localStorage.getItem('myRestaurantId'));
+    
     
   }
 
@@ -74,6 +80,7 @@ export class BluetoothPrinterPage implements OnInit {
     this.bluetooth.list().then(success => {
       this.pairedList = success;
       this.listToggle = true;
+      this.listPaired=true;
       this.searching=false;
       this.btn_txt="Start Search";
       this.Error="Paired device";

@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="printer-type">
+  <div class="printer-type" *ngIf="getAllPrinters.length > 0">
       <div *ngFor="let i of getAllPrinters;">
         <ion-row>
           <ion-col>
@@ -27,13 +27,13 @@
           </ion-col>
         </ion-row>
       </div> 
-     
+      <div class="footer-btn">
+        <ion-button (click)="redirectTo('/my-orders')">
+                    <span>Done</span>
+                    
+        </ion-button>
+        </div>
   </div>
  
-  <div class="footer-btn">
-    <ion-button (click)="redirectTo('/my-orders')">
-                <span>Done</span>
-                
-    </ion-button>
-    </div>
+  
 </ion-content>
