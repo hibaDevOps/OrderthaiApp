@@ -17,4 +17,7 @@ export class PrinterAPIService extends MyApiService {
     getPrinterFromId(id: any): Promise<any> {
         return this.post<any>('getPrinters', { restaurant_id: id });
     }
+    updatePrinter(printerObj,noLoader?:boolean):Promise<any>{
+        return this.post('updatePrinter', { printer: printerObj },noLoader);
+    }
 }

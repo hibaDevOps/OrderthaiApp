@@ -63,25 +63,29 @@ export class SelectedPrintersPage implements OnInit {
     console.log(this.wifiPrinter);
   }
 
-  toggleBluetoothKitchen(event:any){
-    if (event.detail.value == this.toggle_bluetooth_kitchen) {
+ async toggleKitchen(event:any,printer:Printer){
+    if (event == this.toggle_bluetooth_kitchen) {
       return;
     }
 
-    this.toggle_bluetooth_kitchen = event.detail.value;
+    this.toggle_bluetooth_kitchen = event;
     if(this.toggle_bluetooth_kitchen){
       GlobalConstants.kitchen=1;
+
     }
+   
+    await this.printerService.updatePrinter(printer,false);
   }
-  toggleBluetoothCounter(event:any){
-    if (event.detail.value == this.toggle_bluetooth_counter) {
+  async toggleCounter(event:any,printer:Printer){
+    if (event == this.toggle_bluetooth_counter) {
       return;
     }
 
-    this.toggle_bluetooth_counter = event.detail.value;
+    this.toggle_bluetooth_counter = event;
     if(this.toggle_bluetooth_counter){
       GlobalConstants.counter=1;
     }
+    await this.printerService.updatePrinter(printer,false);
   }
   
   toggleWifiKitchen(event:any){
