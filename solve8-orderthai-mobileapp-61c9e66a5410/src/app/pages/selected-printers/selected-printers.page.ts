@@ -109,8 +109,8 @@ export class SelectedPrintersPage implements OnInit {
     }
   }
   redirectTo(path: string) {
-    console.log(GlobalConstants.listBluetoothPrinter);
-    //this.navCtrl.navigateRoot(path);
+  //  console.log(GlobalConstants.listBluetoothPrinter);
+    this.navCtrl.navigateRoot(path);
   
 }
 

@@ -11,14 +11,12 @@
           <ion-row>
             <ion-col>
           <div>
-            {{i.counterReciept}}
             <ion-item>
               <ion-label >FOH Docket / Client Receipt</ion-label>
                <ion-toggle #toggleComponent2 [value]="i.counterReciept" [(ngModel)]="i.counterReciept"  (ionChange)="toggleCounter($event,i)"></ion-toggle>
              </ion-item>
 
              <ion-item>
-              {{i.kitchenReciept}}
               <ion-label>Kitchen Essentials</ion-label>
               <ion-toggle #toggleComponent1 [value]="i.kitchenReciept" [(ngModel)]="i.kitchenReciept" (ionChange)="toggleKitchen($event,i)"></ion-toggle>
               </ion-item>

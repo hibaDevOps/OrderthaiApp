@@ -87,15 +87,7 @@ export class AppComponent {
 
     this.getRestaurantInfo();
 
-    if(localStorage.getItem('isRemember')=="true" && localStorage.getItem('userDetails')!== undefined ){
-      console.log("remember");
-      this.navCtrl.navigateRoot('/my-orders');
-     
-    }else{
-      console.log("non_remember");
-
-      this.navCtrl.navigateRoot('/login');
-    }
+    
   
     
     

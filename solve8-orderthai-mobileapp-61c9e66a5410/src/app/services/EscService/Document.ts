@@ -14,7 +14,7 @@ export class Document {
     
 
     constructor() {
-      Utils.check4CPTable();
+      //Utils.check4CPTable();
     }
 
     private _addB(value: number[][]) {

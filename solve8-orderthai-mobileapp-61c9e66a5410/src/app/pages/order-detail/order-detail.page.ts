@@ -18,6 +18,8 @@ import { BitmapDensity, FeedControlSequence, FontFamily, FontStyle, TextAlignmen
 import { ESCPOSImage } from 'src/app/services/EscService/Image';
 import {GlobalConstants} from 'src/app/common/global';
 import { rawListeners } from 'process';
+import { Printer } from 'src/app/Models/printer';
+import {PrinterAPIService} from 'src/app/services/ApiService/printer_api.service';
 
 
 const { Pos, Clipboard } = Plugins;
@@ -56,6 +58,7 @@ export class OrderDetailPage implements OnInit {
   error:string="";
   PORT:string="9100";
   isNewCustomer:boolean=false;
+  getAllPrinters:Printer[]=[];
   
 
   orderStatus:string="";
@@ -68,7 +71,8 @@ export class OrderDetailPage implements OnInit {
     private utils: UtilService,
     private apiService: OrderService,
     private audioService:AudioService,
-    private bluetooth:BluetoothSerial
+    private bluetooth:BluetoothSerial,
+    private printerService:PrinterAPIService
   ) {
 
 
@@ -358,7 +362,9 @@ export class OrderDetailPage implements OnInit {
     return await this.testOrder.getOrderDetailByIndex(this.navService.myParam.index);
     // return JSON.parse('{"name":"My Thai Restaurant","address":"198 Shirley Street, PIMPAMA QLD 4209, AUSTRALIA","mobile":"+61 123 456 789","email":"alibabaa@gmail.com","orderStatus":"1","orderTime":"2020-12-04 15:33:42","orderRemainingTime":"00:00","orderDeliveryTime":"2020-12-04 15:58:54","paymentMethod":"Online","deliveryNote":"Please when you reach at door step","order":[{"id":"","price":"150.0","productName":"Margarita","quantity":"1","tax":"15.0","addOns":[{"name":"Extra Chess","status":"Add"}]},{"id":"","price":"150.0","productName":"Margarita","quantity":"2","tax":"15.0","addOns":[{"name":"Extra Chess","status":"Add"}]}],"orderProduct":[{"id":"","price":"150.0","productName":"Margarita","quantity":"1","tax":"15.0","addOns":[{"name":"Extra Chess","status":"Add"}]}],"lat":-27.7091963,"lng":153.2201116,"index":292670}');
   }
- 
+  async getPrinters(restaurant_id){
+    this.getAllPrinters=(await this.printerService.getPrinterFromId(restaurant_id));
+   }
   ionViewDidEnter() {
     this.orderDetail = this.navService.myParam;
     this.reserveTime =  this.orderDetail.reserveTime;
@@ -411,6 +417,8 @@ export class OrderDetailPage implements OnInit {
     clearInterval(this.newOrderInterval);
   }
   ngOnInit() {
+    // this.getRestaurant();
+     
 
   }
 
@@ -438,7 +446,7 @@ export class OrderDetailPage implements OnInit {
   getTel(phone: string) {
     return 'tel:+61 ' + phone;
   }
-  printCashRecipt(){
+  printCashRecipt(printaddr:any){
     var current=new Date(this.orderDetail.orderTime);
     var order_time=moment.utc(current).utcOffset('+10:00').format('MMM D - hh:mm A');
 
@@ -1381,8 +1389,8 @@ export class OrderDetailPage implements OnInit {
             .generateUInt8Array()
             
           });
-
-        this.bluetooth.connect(this.printer).subscribe(() => {
+        console.log(escposCommands);
+        this.bluetooth.connect(printaddr).subscribe(() => {
           this.bluetooth.write(escposCommands)
             .then(() => {
               console.log('Print success');
@@ -1395,7 +1403,7 @@ export class OrderDetailPage implements OnInit {
     });
   }
 
-  printCashSocketRecipt(){
+  printCashSocketRecipt(printaddr:any,port:any){
     var current=new Date(this.orderDetail.orderTime);
     var order_time=moment.utc(current).utcOffset('+10:00').format('MMM D - hh:mm A');
 
@@ -2341,8 +2349,8 @@ export class OrderDetailPage implements OnInit {
 
           var socket = new Socket();
           socket.open(
-            this.socket,
-            this.PORT,
+            printaddr,
+            port,
             () => {
               socket.write(escposCommands, () => {
                 socket.shutdownWrite();
@@ -2925,7 +2933,7 @@ export class OrderDetailPage implements OnInit {
   //     this.navCtrl.navigateRoot('thermal-printer');
   //   }
   // }
-  printKitchenRecipt(){
+  printKitchenRecipt(printaddr:any){
     var current=new Date(this.orderDetail.orderTime);
     var order_time=moment.utc(current).utcOffset('+10:00').format('MMM D - hh:mm A');
 
@@ -3289,7 +3297,7 @@ export class OrderDetailPage implements OnInit {
           });
 
 
-        this.bluetooth.connect(this.printer).subscribe(() => {
+        this.bluetooth.connect(printaddr).subscribe(() => {
           this.bluetooth.write(escposCommands)
             .then(() => {
               console.log('Print success');
@@ -3322,7 +3330,7 @@ export class OrderDetailPage implements OnInit {
       return "Online Payment Cancelled";
     }
   }
-  printKitchenSocketRecipt(){
+  printKitchenSocketRecipt(printaddr:any,port:any){
     var current=new Date(this.orderDetail.orderTime);
     var order_time=moment.utc(current).utcOffset('+10:00').format('MMM D - hh:mm A');
 
@@ -3688,8 +3696,8 @@ export class OrderDetailPage implements OnInit {
 
           var socket = new Socket();
           socket.open(
-            this.socket,
-            this.PORT,
+            printaddr,
+            port,
             () => {
               socket.write(escposCommands, () => {
                 socket.shutdownWrite();
@@ -3707,7 +3715,43 @@ export class OrderDetailPage implements OnInit {
   }
   async printReceipt() {
     await this.getRestaurant();
-    if(this.printer!=''){
+    this.getPrinters(localStorage.getItem('myRestaurantId'));
+    
+    this.getAllPrinters.forEach((printer) => {
+        if(printer.printerType=="bluetooth"){
+          if(printer.counterReciept == '1'){
+             if(this.orderDetail.paymentMethod == 'Cash')
+              {
+                 this.printCashRecipt(printer.printerAddress);
+              
+
+              }else{
+                this.printCashRecipt(printer.printerAddress);
+              }
+          }
+          if(printer.kitchenReciept == '1'){
+            this.printKitchenRecipt(printer.printerAddress);    
+          }
+        }else if(printer.printerType=="wifi"){
+          if(printer.counterReciept == '1'){
+            if(this.orderDetail.paymentMethod == 'Cash')
+             {
+              this.printCashSocketRecipt(printer.printerAddress,printer.port);
+
+             
+
+             }else{
+              this.printCashSocketRecipt(printer.printerAddress,printer.port);
+
+             }
+         }
+         if(printer.kitchenReciept == '1'){
+          this.printKitchenSocketRecipt(printer.printerAddress,printer.port);
+         }
+        }
+    });
+
+    /*if(this.printer!=''){
       if(this.isCounter == 1){
         if(this.orderDetail.paymentMethod == 'Cash')
         {
@@ -3731,7 +3775,7 @@ export class OrderDetailPage implements OnInit {
       }else if(this.isWifiKitchen == 1){
         this.printKitchenSocketRecipt();
       }
-    }
+    }*/
     //  this.printCashRecipt();
     //  this.printStripRecipt();
     
