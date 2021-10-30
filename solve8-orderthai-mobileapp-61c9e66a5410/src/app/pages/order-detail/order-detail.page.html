@@ -130,8 +130,11 @@
                             <span>{{getSubTotal()}}</span>
                         </div>
                         <div class="sub-total" *ngIf="isTaxAvailable()">
-                            <span>{{orderDetail.taxName+"("+orderDetail.tax+"%)"}}</span>
-                            <span>{{getTax()}}</span>
+                            <span>{{orderDetail.taxName+"("+orderDetail.taxPaymentOption+"% "}}<span *ngIf="orderDetail.taxType=='1'"> included )</span><span *ngIf="orderDetail.taxType=='2'"> excluded)</span></span>
+                            <span *ngIf="orderDetail.taxType=='2'">{{getTax()}}</span>
+                            <span *ngIf="orderDetail.taxType=='1'">{{getPaymentTax()}}</span>
+                            
+                            
                         </div>
                         <div class="sub-total" *ngIf="orderMethod === 'delivery'">
                             <span>Delivery Charges</span>

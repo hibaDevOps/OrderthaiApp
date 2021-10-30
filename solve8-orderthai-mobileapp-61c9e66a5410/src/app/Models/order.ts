@@ -24,8 +24,10 @@ export class Order {
     reserveTime:any="";
     resrveDate:any="";
     tax: any = "0.00";
+    taxPaymentOption:any="0.00";
     clientName:any="Food Client";
     taxName: any = "GST";
+    taxType:any="";
     orderLater:any="";
     deliveryFee:any="0.000";
     createdAt:any="";

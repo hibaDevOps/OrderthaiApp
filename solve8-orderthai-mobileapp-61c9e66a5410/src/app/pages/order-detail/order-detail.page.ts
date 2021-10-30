@@ -4314,7 +4314,23 @@ export class OrderDetailPage implements OnInit {
         total += Number.parseFloat(this.getPrice(item));
       });
     }
-    tax = ((total * Number.parseFloat(this.orderDetail.tax)) / 100);
+    if(this.orderDetail.taxType == "1"){
+      tax=0.00;
+    }else if(this.orderDetail.taxType == "2"){
+      tax = ((total * Number.parseFloat(this.orderDetail.taxPaymentOption)) / 100);
+    }
+    
+    return isNaN(tax) ? '0.0' : tax.toFixed(2);
+  }
+  getPaymentTax(){
+    let total = 0.0;
+    let tax = 0.0;
+    if (this.orderDetail.order && this.orderDetail.order.length > 0) {
+      this.orderDetail.order.map((item) => {
+        total += Number.parseFloat(this.getPrice(item));
+      });
+    }
+    tax = ((total * Number.parseFloat(this.orderDetail.taxPaymentOption)) / 100);
     return isNaN(tax) ? '0.0' : tax.toFixed(2);
   }
   getSubTotal() {
